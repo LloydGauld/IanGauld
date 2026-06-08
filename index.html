@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ian Gauld | Picture Hanging & Art Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal:       #2a2826;
+      --charcoal-mid:   #3a3835;
+      --charcoal-light: #4e4b47;
+      --cream:          #f2ece1;
+      --cream-dark:     #e0d8cb;
+      --white:          #ffffff;
+      --accent:         #c45a3c;
+      --accent-dark:    #a44830;
+      --gold:           #b8986a;
+      --text-on-dark:   #f2ece1;
+      --text-on-cream:  #2a2826;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--charcoal);
+      color: var(--text-on-dark);
+      font-weight: 300;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      height: 70px;
+      background: rgba(42, 40, 38, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 152, 106, 0.25);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background:
+        linear-gradient(160deg, rgba(42,40,38,0.82) 0%, rgba(42,40,38,0.65) 100%),
+        url('https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&q=80') center/cover no-repeat;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-frame {
+      border: 2px solid var(--gold);
+      padding: 56px 64px;
+      position: relative;
+      max-width: 580px;
+      width: 100%;
+    }
+
+    .hero-frame::before,
+    .hero-frame::after {
+      content: '';
+      position: absolute;
+      background: var(--charcoal);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 4.8rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      line-height: 1.1;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 20px auto;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.8vw, 1.35rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--cream-dark);
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .hero-subtitle em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 36px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: var(--white);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+    /* ─── SECTION SHARED ──────────────────────────────────────────── */
+    section { padding: 100px 48px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .section-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 20px auto 0;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────────────── */
+    #about {
+      background: var(--charcoal-mid);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--cream-dark);
+      margin-bottom: 20px;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid var(--gold);
+      z-index: -1;
+    }
+
+    .services-list {
+      margin-top: 28px;
+      list-style: none;
+    }
+
+    .services-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(184,152,106,0.2);
+      color: var(--cream-dark);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .services-list li::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── GALLERY ─────────────────────────────────────────────────── */
+    #gallery { background: var(--charcoal); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      background: var(--charcoal-mid);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: grayscale(15%);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(42,40,38,0.85) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-upload-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--charcoal-light);
+      letter-spacing: 0.1em;
+    }
+
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,16,0.95);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border: 1px solid rgba(184,152,106,0.3);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 2rem;
+      color: var(--cream);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    /* ─── BOOKING ─────────────────────────────────────────────────── */
+    #booking { background: var(--cream); color: var(--text-on-cream); }
+
+    #booking .section-title { color: var(--charcoal); }
+    #booking .section-label { color: var(--accent); }
+
+    .booking-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Calendar */
+    .calendar-wrap {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cal-month {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .cal-nav {
+      background: none;
+      border: 1px solid var(--cream-dark);
+      width: 32px; height: 32px;
+      cursor: pointer;
+      color: var(--charcoal-mid);
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cal-nav:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      padding: 6px 0;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      color: var(--charcoal);
+      transition: all 0.18s;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      border-radius: 2px;
+    }
+
+    .cal-day:hover:not(.disabled):not(.empty) {
+      background: var(--cream);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .cal-day.selected {
+      background: var(--accent);
+      color: var(--white) !important;
+      border-color: var(--accent);
+    }
+
+    .cal-day.today {
+      border-color: var(--gold);
+      color: var(--charcoal);
+    }
+
+    .cal-day.disabled {
+      color: var(--cream-dark);
+      cursor: not-allowed;
+    }
+
+    .cal-day.empty { cursor: default; }
+
+    /* Time slots */
+    .timeslots {
+      margin-top: 20px;
+    }
+
+    .timeslots-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .timeslots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .timeslot {
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 0.78rem;
+      border: 1px solid var(--cream-dark);
+      cursor: pointer;
+      color: var(--charcoal-mid);
+      transition: all 0.18s;
+      background: var(--white);
+      font-family: 'Lato', sans-serif;
+    }
+
+    .timeslot:hover { border-color: var(--accent); color: var(--accent); }
+
+    .timeslot.selected {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .timeslot.booked {
+      background: var(--cream-dark);
+      color: #aaa;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    /* Booking form */
+    .booking-form-wrap { }
+
+    .booking-form-wrap h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .booking-selected-info {
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+      min-height: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--accent); }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: background 0.25s;
+    }
+
+    .form-submit:hover { background: var(--accent-dark); }
+    .form-submit:disabled { background: var(--cream-dark); cursor: not-allowed; }
+
+    .booking-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .booking-success.show { display: block; }
+
+    .booking-success .check {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .booking-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .booking-success p {
+      color: var(--charcoal-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────────────────── */
+    #contact { background: var(--charcoal-mid); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      text-align: center;
+      padding: 36px 24px;
+      border: 1px solid rgba(184,152,106,0.2);
+      background: rgba(42,40,38,0.5);
+    }
+
+    .contact-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .contact-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      font-size: 0.9rem;
+      color: var(--cream-dark);
+      text-decoration: none;
+      line-height: 1.7;
+      transition: color 0.2s;
+    }
+
+    .contact-card a:hover { color: var(--accent); }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      border-top: 1px solid rgba(184,152,106,0.15);
+      padding: 36px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--charcoal-light);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--cream-dark);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      section { padding: 70px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .booking-container { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; max-width: 400px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 580px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hero-frame { padding: 40px 28px; }
+      nav { padding: 0 16px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────────────── -->
+  <nav>
+    <span class="nav-brand">Ian Gauld</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#booking">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-frame">
+      <h1 class="hero-name">Ian<br>Gauld</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">
+        Picture Hanging <em>&amp;</em> Art Services
+      </p>
+      <a href="#booking" class="btn btn-primary">Book a Consultation</a>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-header" style="text-align:left; margin-bottom:32px;">
+          <span class="section-label">About</span>
+          <h2 class="section-title" style="font-size:2.2rem;">Expert Art<br>Placement</h2>
+          <div class="section-rule" style="margin:20px 0 0;"></div>
+        </div>
+        <p>
+          With years of experience working across private residences, galleries, and commercial spaces, Ian Gauld brings a precise, considered approach to every installation — ensuring your artwork is displayed exactly as it deserves.
+        </p>
+        <p>
+          From a single cherished piece to an entire collection, every job is treated with the same level of care and professionalism. Ian works with collectors, interior designers, and homeowners throughout the region.
+        </p>
+        <ul class="services-list">
+          <li>Picture &amp; artwork hanging</li>
+          <li>Gallery wall design &amp; installation</li>
+          <li>Mirrors &amp; large format pieces</li>
+          <li>Art collection curation advice</li>
+          <li>Commercial &amp; office installations</li>
+          <li>Relocation &amp; rehang services</li>
+        </ul>
+      </div>
+      <div class="about-image">
+        <img
+          src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80"
+          alt="Professional picture hanging service"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ───────────────────────────────────────────────────── -->
+  <section id="gallery">
+    <div class="section-header">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Gallery of Work</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Images — replace src values with actual project photos -->
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" alt="Gallery wall installation" />
+        <div class="gallery-overlay"><span class="gallery-caption">Gallery Wall, Edinburgh</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Contemporary art installation" />
+        <div class="gallery-overlay"><span class="gallery-caption">Contemporary Installation</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" alt="Private collection display" />
+        <div class="gallery-overlay"><span class="gallery-caption">Private Collection</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?w=800&q=80" alt="Staircase gallery wall" />
+        <div class="gallery-overlay"><span class="gallery-caption">Staircase Gallery</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800&q=80" alt="Office art installation" />
+        <div class="gallery-overlay"><span class="gallery-caption">Commercial Office</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Mirror installation" />
+        <div class="gallery-overlay"><span class="gallery-caption">Statement Mirror</span></div>
+      </div>
+    </div>
+
+    <p class="gallery-upload-note">
+      — Images shown are placeholders. Replace with your own project photos —
+    </p>
+  </section>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <!-- ─── BOOKING ───────────────────────────────────────────────────── -->
+  <section id="booking">
+    <div class="section-header">
+      <span class="section-label">Schedule</span>
+      <h2 class="section-title">Book a Visit</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="booking-container">
+      <!-- Calendar -->
+      <div>
+        <div class="calendar-wrap">
+          <div class="cal-header">
+            <button class="cal-nav" id="prevMonth">&#8249;</button>
+            <span class="cal-month" id="calMonth"></span>
+            <button class="cal-nav" id="nextMonth">&#8250;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+
+        <div class="timeslots" id="timeslotsSection" style="display:none;">
+          <span class="timeslots-label">Available Times</span>
+          <div class="timeslots-grid" id="timeslotsGrid"></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="booking-form-wrap">
+        <h3>Request an Appointment</h3>
+        <p class="booking-selected-info" id="selectedInfo">Select a date and time to continue</p>
+
+        <div id="bookingFormInner">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="clientName" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="clientPhone" placeholder="+44 7XXX XXX XXX" />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="clientEmail" placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select id="serviceType">
+              <option value="">— Select a service —</option>
+              <option>Picture &amp; artwork hanging</option>
+              <option>Gallery wall design &amp; installation</option>
+              <option>Mirrors &amp; large format pieces</option>
+              <option>Commercial &amp; office installations</option>
+              <option>Relocation &amp; rehang services</option>
+              <option>Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea id="clientNotes" placeholder="Describe the job, number of pieces, property type, etc."></textarea>
+          </div>
+          <button class="form-submit" id="submitBtn" onclick="submitBooking()">
+            Request Appointment
+          </button>
+        </div>
+
+        <div class="booking-success" id="bookingSuccess">
+          <div class="check">&#10003;</div>
+          <h3>Request Sent!</h3>
+          <p>
+            Thank you for getting in touch.<br />
+            Ian will confirm your appointment within 24 hours.
+          </p>
+          <br />
+          <button class="btn" onclick="resetBooking()">Make Another Booking</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">&#9742;</div>
+        <h4>Phone</h4>
+        <a href="tel:07561324595">07561 324 595</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">&#9993;</div>
+        <h4>Email</h4>
+        <!-- Replace with Ian's email when ready -->
+        <p style="color: rgba(242,236,225,0.35); font-style:italic;">Email coming soon</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">&#9906;</div>
+        <h4>Location</h4>
+        <!-- Replace with service area when ready -->
+        <p style="color: rgba(242,236,225,0.35); font-style:italic;">Area details coming soon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-brand">Ian Gauld &mdash; Picture Hanging &amp; Art Services</span>
+    <span>&copy; <span id="footerYear"></span> Ian Gauld. All rights reserved.</span>
+  </footer>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────────────────── -->
+  <script>
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ── Lightbox ── */
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    /* ── Calendar ── */
+    const TIME_SLOTS = ['9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+    // Simulated booked slots: { 'YYYY-MM-DD': ['9:00 AM', ...] }
+    const bookedSlots = {};
+
+    function formatKey(d) {
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const today = new Date(); today.setHours(0,0,0,0);
+
+      const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      document.getElementById('calMonth').textContent = `${monthNames[month]} ${year}`;
+
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+
+      const dayNames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      dayNames.forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'cal-day-name';
+        el.textContent = d;
+        grid.appendChild(el);
+      });
+
+      const firstDay = new Date(year, month, 1);
+      // Monday-based offset
+      let startOffset = firstDay.getDay() - 1;
+      if (startOffset < 0) startOffset = 6;
+
+      for (let i = 0; i < startOffset; i++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day empty';
+        grid.appendChild(el);
+      }
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      for (let day = 1; day <= daysInMonth; day++) {
+        const d = new Date(year, month, day);
+        const el = document.createElement('div');
+        el.className = 'cal-day';
+        el.textContent = day;
+
+        const isPast = d < today;
+        const isSunday = d.getDay() === 0;
+
+        if (isPast || isSunday) {
+          el.classList.add('disabled');
+        } else {
+          if (d.toDateString() === today.toDateString()) el.classList.add('today');
+          if (selectedDate && d.toDateString() === selectedDate.toDateString()) el.classList.add('selected');
+          el.addEventListener('click', () => selectDate(d, el));
+        }
+
+        grid.appendChild(el);
+      }
+    }
+
+    function selectDate(d, el) {
+      document.querySelectorAll('.cal-day').forEach(x => x.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedDate = d;
+      selectedTime = null;
+      renderTimeSlots();
+      updateSelectedInfo();
+    }
+
+    function renderTimeSlots() {
+      const section = document.getElementById('timeslotsSection');
+      const grid = document.getElementById('timeslotsGrid');
+      section.style.display = 'block';
+      grid.innerHTML = '';
+
+      const key = formatKey(selectedDate);
+      const taken = bookedSlots[key] || [];
+
+      TIME_SLOTS.forEach(t => {
+        const el = document.createElement('div');
+        el.className = 'timeslot';
+        el.textContent = t;
+        if (taken.includes(t)) {
+          el.classList.add('booked');
+        } else {
+          el.addEventListener('click', () => selectTime(t, el));
+        }
+        grid.appendChild(el);
+      });
+    }
+
+    function selectTime(t, el) {
+      document.querySelectorAll('.timeslot').forEach(x => x.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedTime = t;
+      updateSelectedInfo();
+    }
+
+    function updateSelectedInfo() {
+      const el = document.getElementById('selectedInfo');
+      if (selectedDate && selectedTime) {
+        const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        el.textContent = `${selectedDate.toLocaleDateString('en-GB', opts)} at ${selectedTime}`;
+        el.style.color = 'var(--accent)';
+      } else if (selectedDate) {
+        el.textContent = 'Now select a time slot above';
+        el.style.color = 'var(--charcoal-light)';
+      }
+    }
+
+    function submitBooking() {
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const email = document.getElementById('clientEmail').value.trim();
+      const service = document.getElementById('serviceType').value;
+
+      if (!selectedDate || !selectedTime) {
+        alert('Please select a date and time before submitting.');
+        return;
+      }
+      if (!name || !phone || !email || !service) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Mark slot as booked (in-memory)
+      const key = formatKey(selectedDate);
+      if (!bookedSlots[key]) bookedSlots[key] = [];
+      bookedSlots[key].push(selectedTime);
+
+      document.getElementById('bookingFormInner').style.display = 'none';
+      document.getElementById('bookingSuccess').classList.add('show');
+    }
+
+    function resetBooking() {
+      selectedDate = null;
+      selectedTime = null;
+      document.getElementById('selectedInfo').textContent = 'Select a date and time to continue';
+      document.getElementById('timeslotsSection').style.display = 'none';
+      document.getElementById('bookingFormInner').style.display = 'block';
+      document.getElementById('bookingSuccess').classList.remove('show');
+      document.getElementById('clientName').value = '';
+      document.getElementById('clientPhone').value = '';
+      document.getElementById('clientEmail').value = '';
+      document.getElementById('serviceType').value = '';
+      document.getElementById('clientNotes').value = '';
+      renderCalendar();
+    }
+
+    document.getElementById('prevMonth').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    document.getElementById('nextMonth').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    renderCalendar();
+  </script>
+</body>
+</html>
