@@ -474,20 +474,21 @@
 
     .timeslots-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
     }
 
     .timeslot {
-      padding: 8px 4px;
+      padding: 14px 8px;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       border: 1px solid var(--cream-dark);
       cursor: pointer;
       color: var(--charcoal-mid);
       transition: all 0.18s;
       background: var(--white);
       font-family: 'Lato', sans-serif;
+      letter-spacing: 0.06em;
     }
 
     .timeslot:hover { border-color: var(--accent); color: var(--accent); }
@@ -816,7 +817,7 @@
         </div>
 
         <div class="timeslots" id="timeslotsSection" style="display:none;">
-          <span class="timeslots-label">Available Times</span>
+          <span class="timeslots-label">Booking Duration</span>
           <div class="timeslots-grid" id="timeslotsGrid"></div>
         </div>
       </div>
@@ -931,7 +932,7 @@
     });
 
     /* ── Calendar ── */
-    const TIME_SLOTS = ['9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
+    const BOOKING_TYPES = ['Half Day', 'Full Day'];
     let currentDate = new Date();
     let selectedDate = null;
     let selectedTime = null;
@@ -1012,11 +1013,14 @@
       const key = formatKey(selectedDate);
       const taken = bookedSlots[key] || [];
 
-      TIME_SLOTS.forEach(t => {
+      BOOKING_TYPES.forEach(t => {
         const el = document.createElement('div');
         el.className = 'timeslot';
         el.textContent = t;
-        if (taken.includes(t)) {
+        // Full Day is unavailable if any booking exists; Half Day is unavailable if Full Day is booked
+        const fullyBooked = taken.includes('Full Day');
+        const isUnavailable = taken.includes(t) || (t === 'Half Day' && fullyBooked) || (t === 'Full Day' && taken.length > 0);
+        if (isUnavailable) {
           el.classList.add('booked');
         } else {
           el.addEventListener('click', () => selectTime(t, el));
@@ -1036,7 +1040,7 @@
       const el = document.getElementById('selectedInfo');
       if (selectedDate && selectedTime) {
         const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        el.textContent = `${selectedDate.toLocaleDateString('en-GB', opts)} at ${selectedTime}`;
+        el.textContent = `${selectedTime} — ${selectedDate.toLocaleDateString('en-GB', opts)}`;
         el.style.color = 'var(--accent)';
       } else if (selectedDate) {
         el.textContent = 'Now select a time slot above';
