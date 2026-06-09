@@ -863,10 +863,11 @@
 
         <div class="booking-success" id="bookingSuccess">
           <div class="check">&#10003;</div>
-          <h3>Request Sent!</h3>
+          <h3>Almost There!</h3>
           <p>
-            Thank you for getting in touch.<br />
-            Ian will confirm your appointment within 24 hours.
+            Your email client should have opened with everything pre-filled.<br />
+            Just hit <strong>Send</strong> to submit your booking request —<br />
+            Ian will confirm within 24 hours.
           </p>
           <br />
           <button class="btn" onclick="resetBooking()">Make Another Booking</button>
@@ -933,6 +934,7 @@
 
     /* ── Calendar ── */
     const BOOKING_TYPES = ['Half Day', 'Full Day'];
+
     let currentDate = new Date();
     let selectedDate = null;
     let selectedTime = null;
@@ -1049,13 +1051,14 @@
     }
 
     function submitBooking() {
-      const name = document.getElementById('clientName').value.trim();
-      const phone = document.getElementById('clientPhone').value.trim();
-      const email = document.getElementById('clientEmail').value.trim();
+      const name    = document.getElementById('clientName').value.trim();
+      const phone   = document.getElementById('clientPhone').value.trim();
+      const email   = document.getElementById('clientEmail').value.trim();
       const service = document.getElementById('serviceType').value;
+      const notes   = document.getElementById('clientNotes').value.trim();
 
       if (!selectedDate || !selectedTime) {
-        alert('Please select a date and time before submitting.');
+        alert('Please select a date and booking duration before submitting.');
         return;
       }
       if (!name || !phone || !email || !service) {
@@ -1063,7 +1066,23 @@
         return;
       }
 
-      // Mark slot as booked (in-memory)
+      const dateStr = selectedDate.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+      const subject = encodeURIComponent(`Booking Request — ${selectedTime}, ${dateStr}`);
+      const body = encodeURIComponent(
+        `Hi Ian,\n\nI'd like to book an appointment. Details below:\n\n` +
+        `Name:     ${name}\n` +
+        `Phone:    ${phone}\n` +
+        `Email:    ${email}\n` +
+        `Date:     ${dateStr}\n` +
+        `Duration: ${selectedTime}\n` +
+        `Service:  ${service}\n` +
+        `Notes:    ${notes || '—'}\n\n` +
+        `Many thanks,\n${name}`
+      );
+
+      window.location.href = `mailto:artservices@iangauld.co.uk?subject=${subject}&body=${body}`;
+
       const key = formatKey(selectedDate);
       if (!bookedSlots[key]) bookedSlots[key] = [];
       bookedSlots[key].push(selectedTime);
@@ -1079,6 +1098,9 @@
       document.getElementById('timeslotsSection').style.display = 'none';
       document.getElementById('bookingFormInner').style.display = 'block';
       document.getElementById('bookingSuccess').classList.remove('show');
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = false;
+      btn.textContent = 'Request Appointment';
       document.getElementById('clientName').value = '';
       document.getElementById('clientPhone').value = '';
       document.getElementById('clientEmail').value = '';
